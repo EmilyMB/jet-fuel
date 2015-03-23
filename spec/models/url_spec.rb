@@ -1,4 +1,4 @@
-require 'rails_helper'
+require "rails_helper"
 
 RSpec.describe Url, type: :model do
   it "has a url and a short url" do

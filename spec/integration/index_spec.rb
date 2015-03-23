@@ -1,7 +1,6 @@
 require "rails_helper"
 
 describe "a guest user", type: :feature do
-
   it "can visit the root path" do
     visit root_path
 
@@ -15,7 +14,7 @@ describe "a guest user", type: :feature do
     click_link_or_button("Shorten it!")
     url = Url.last
 
-    expect(url.short_url.length).to eq(5)
+    expect(url.short_url.length).to eq(27)
     expect(page).to have_content(url.short_url)
   end
 end
