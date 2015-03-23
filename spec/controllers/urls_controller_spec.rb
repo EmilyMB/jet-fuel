@@ -10,11 +10,13 @@ describe UrlsController do
 
       expect(assigns(:urls)).to eq([url])
     end
+  end
 
-    it "assigns @url" do
-      get :index
+  describe "#creates" do
+    it "creates a url with a short url" do
+      post :create, url: "www.google.com"
 
-      expect(assigns(:url).class).to eq(Url)
+      expect(Url.last.short_url.length).to eq(19)
     end
   end
 end

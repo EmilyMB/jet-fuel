@@ -11,7 +11,7 @@ describe "a guest user", type: :feature do
   it "can input a long URL" do
     visit root_path
 
-    fill_in("url[url]", with: "http://www.example.com")
+    fill_in("url", with: "http://www.example.com")
     click_link_or_button("Shorten it!")
     url = Url.last
 
