@@ -1,0 +1,26 @@
+{
+  "RSpec": {
+    "coverage": {
+      "/Users/e/Documents/Turing/mod4/jet-fuel/app/controllers/urls_controller.rb": [
+        1,
+        1,
+        4,
+        4,
+        null,
+        null
+      ],
+      "/Users/e/Documents/Turing/mod4/jet-fuel/app/controllers/application_controller.rb": [
+        1,
+        null,
+        null,
+        1,
+        null
+      ],
+      "/Users/e/Documents/Turing/mod4/jet-fuel/app/models/url.rb": [
+        1,
+        null
+      ]
+    },
+    "timestamp": 1427147634
+  }
+}
