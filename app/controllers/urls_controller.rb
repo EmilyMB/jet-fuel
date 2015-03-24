@@ -1,21 +1,19 @@
 class UrlsController < ApplicationController
   def index
-    @urls = Url.all
+    @urls = Url.order(click_count: :desc)
   end
 
   def create
-    @url = Url.create(url: params[:url], short_url: short_url)
+    @url = Url.find_or_create_by(url: params[:url])
+    flash[:message] = "Your new url is: #{@url.short_url}"
 
-    redirect_to url_path(@url)
+    redirect_to root_path
   end
 
   def show
     @url = Url.find(params[:id])
-  end
+    @url.increment!(:click_count)
 
-  private
-
-  def short_url
-    ShortUrl.call
+    redirect_to @url.url
   end
 end

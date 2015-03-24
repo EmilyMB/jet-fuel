@@ -14,7 +14,7 @@ describe UrlsController do
 
   describe "#creates" do
     it "creates a url with a short url" do
-      post :create, url: "www.google.com"
+      post :create, url: "http://www.google.com"
 
       expect(Url.last.short_url.length).to eq(27)
     end

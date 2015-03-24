@@ -1,6 +1,5 @@
 FactoryGirl.define do
   factory :url do
-    url "http://www.google.com"
-    short_url "http://SERVER/AFGAD"
+    sequence(:url) { |n| "http://www.google.com/#{n}" }
   end
 end
