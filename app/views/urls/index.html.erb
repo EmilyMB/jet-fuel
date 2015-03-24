@@ -12,7 +12,9 @@
   <tbody>
     <% @urls.each do |url| %>
       <tr>
-        <td><a href="<%= url.url %>" class="link"> <%= url.short_url %></a></td>
+        <td>
+          <%= link_to "#{url.short_url}", url_path(url), class:"link" %>
+        </td>
         <td><%= url.formatted_date %></td>
       </tr>
     <% end %>

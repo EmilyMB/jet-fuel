@@ -4,7 +4,7 @@ class Url < ActiveRecord::Base
   def formatted_date
     created_at.strftime("%d-%m-%Y")
   end
-  
+
   private
 
   def add_short_url
