@@ -16,5 +16,6 @@ describe "a guest user", type: :feature do
 
     expect(url.short_url.length).to eq(27)
     expect(page).to have_content(url.short_url)
+    expect(current_path).to eq(url_path(url))
   end
 end
