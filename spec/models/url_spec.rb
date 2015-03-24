@@ -5,7 +5,13 @@ RSpec.describe Url, type: :model do
     url = create(:url)
 
     expect(url).to be_valid
-    expect(url.url).to eq("http://www.google.com")
-    expect(url.short_url).to eq("http://SERVER/AFGAD")
+    expect(url.url).to eq("http://www.google.com/1")
+    expect(url.short_url.length).to eq(27)
+  end
+
+  it "has a formatted created at date" do
+    url = create(:url)
+
+    expect(url.formatted_date).to eq(url.created_at.strftime("%d-%m-%Y"))
   end
 end

@@ -2,3 +2,19 @@
   <%= text_field_tag(:url) %>
   <%= submit_tag("Shorten it!") %>
 <% end %>
+
+<table>
+  <thead>
+    <tr><th>Link</th>
+      <th>Date added</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @urls.each do |url| %>
+      <tr>
+        <td><a href="<%= url.url %>" class="link"> <%= url.short_url %></a></td>
+        <td><%= url.formatted_date %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
