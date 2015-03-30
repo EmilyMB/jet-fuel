@@ -16,6 +16,7 @@ describe "a guest user", type: :feature do
 
     expect(url.short_url.length).to eq(27)
     expect(page).to have_content(url.short_url)
+    expect(page).to have_content(url.url)
     expect(current_path).to eq(root_path)
   end
 
@@ -36,15 +37,28 @@ describe "a guest user", type: :feature do
 
     visit root_path
 
-    expect(first(:link)[:href]).to eq(url_path(popular_url))
+    within("#urls") do
+      expect(first(:link)[:href]).to eq(url_path(popular_url))
+    end
   end
 
   it "can increase in popularity by clicking the link" do
     url = create(:url, url: "http://www.google.com")
 
     visit root_path
-    first(:link).click
+    3.times { click_link_or_button("#{url.short_url}") }
 
-    expect(Url.find(url.id).click_count).to eq(1)
+    expect(Url.find(url.id).click_count).to eq(3)
+  end
+
+  it "can sort by date" do
+    create(:url, click_count: 50)
+    popular_url = create(:url, click_count: 1000)
+    popular_url.update_attributes(created_at: Date.new(1990, 1, 1))
+
+    visit root_path
+    click_link_or_button("Date added")
+
+    expect(first(:link)[:href]).not_to eq(url_path(popular_url))
   end
 end
