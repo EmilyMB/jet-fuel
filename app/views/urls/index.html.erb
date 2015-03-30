@@ -6,10 +6,13 @@
   <label for="search-basic">Search:</label>
   <input type="search" name="search" id="search-basic" value="" />
 </p>
+<p><%= link_to "Sort by popularity", root_path %></p>
 <table>
   <thead>
-    <tr><th>Link</th>
-      <th>Date added</th>
+    <tr>
+      <th>Shortened Link</th>
+      <th>Link</th>
+      <th><%= sortable "created_at", "Date added" %></th>
     </tr>
   </thead>
   <tbody id="urls">
@@ -18,6 +21,7 @@
         <td>
           <%= link_to "#{url.short_url}", url_path(url), class:"link" %>
         </td>
+        <td><%= link_to "#{url.url}", url.url %></td>
         <td><%= url.formatted_date %></td>
       </tr>
     <% end %>

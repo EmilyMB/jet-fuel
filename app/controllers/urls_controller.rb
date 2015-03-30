@@ -1,8 +1,13 @@
 class UrlsController < ApplicationController
   require "uri"
+  helper_method :sort_column, :sort_direction
 
   def index
-    @urls = Url.order(click_count: :desc)
+    if params[:sort]
+      @urls = Url.order(sort_column + " " + sort_direction)
+    else
+      @urls = Url.order(click_count: :desc)
+    end
   end
 
   def create
@@ -26,6 +31,14 @@ class UrlsController < ApplicationController
 
   def url_valid?
     uri = URI.parse(params[:url])
-    uri.kind_of?(URI::HTTP)
+    uri.is_a?(URI::HTTP)
+  end
+
+  def sort_column
+    Url.column_names.include?(params[:sort]) ? params[:sort] : "name"
+  end
+
+  def sort_direction
+    %w[asc desc].include?(params[:direction]) ? params[:direction] : "asc"
   end
 end
